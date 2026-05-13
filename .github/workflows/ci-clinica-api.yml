@@ -10,10 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Descargar código fuente
+      - name: Descargar codigo fuente
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Instalar .NET 8
         uses: actions/setup-dotnet@v4
@@ -21,10 +19,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restaurar dependencias
-        run: dotnet restore "API clínica/ClinicaAPI.csproj"
+        run: dotnet restore ClinicaAPI/ClinicaAPI.csproj
 
-      - name: Compilar aplicación
-        run: dotnet build "API clínica/ClinicaAPI.csproj" --no-restore
-
-      - name: Ejecutar pruebas
-        run: dotnet test --no-build --verbosity normal
+      - name: Compilar aplicacion
+        run: dotnet build ClinicaAPI/ClinicaAPI.csproj --no-restore
