@@ -1,0 +1,25 @@
+name: CI Clinica API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo fuente
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restaurar dependencias
+        run: dotnet restore ClinicaAPI/ClinicaAPI.csproj
+
+      - name: Compilar aplicacion
+        run: dotnet build ClinicaAPI/ClinicaAPI.csproj --no-restore
