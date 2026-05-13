@@ -23,3 +23,12 @@ jobs:
 
       - name: Compilar aplicacion
         run: dotnet build ClinicaAPI/ClinicaAPI.csproj --no-restore
+
+      - name: Restaurar dependencias de pruebas
+        run: dotnet restore ClinicaAPI.Tests/ClinicaAPI.Tests.csproj
+
+      - name: Compilar pruebas
+        run: dotnet build ClinicaAPI.Tests/ClinicaAPI.Tests.csproj --no-restore
+
+      - name: Ejecutar pruebas unitarias
+        run: dotnet test ClinicaAPI.Tests/ClinicaAPI.Tests.csproj --no-build --verbosity normal
